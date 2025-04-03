@@ -1,4 +1,5 @@
 from pygame import *
+font.init()
 
 color_back = (0, 225, 255)
 width_w = 600
@@ -33,3 +34,31 @@ class Player(GameSprite):
             self.rect.x -= self.speed
         if keys[K_DOWN] and self.rect.x < width_w - 80:
             self.rect.x += self.speed
+
+
+
+racket1 = Player('racket.png', 30, 200, 50, 150, 4)
+racket2 = Player('racket.png', 520, 200, 50, 150, 4)
+ball = GameSprite('ball.png', 200, 200, 50, 50, 4)
+
+font = font.SysFont('comicsans', 45)
+
+lose_1 = font.render('FIRST PLAYER LOSE!', True, (106, 179, 61))
+lose_2 = font.render('SECOND PLAYER LOSE!', True, (106, 179, 61))
+
+game = True
+finish = False
+clock = time.Clock()
+FPS = 60
+while game:
+    for i in event.get():
+        if i.type == QUIT:
+            game = False
+    
+    racket1.reset()
+    racket2.reset()
+    ball.reset()
+
+
+    clock.tick()
+    display.update()
